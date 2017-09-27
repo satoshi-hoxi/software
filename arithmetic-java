@@ -1,0 +1,97 @@
+/*the most important parts*/
+Atttention:
+the sourse:http://www.cnblogs.com/matrix-r/archive/2013/03/23/2977330.html
+
+one:
+the memeber:
+private:
+        vector<float> fArray;
+        vector<char> cOprt;
+        vector<int> iPriority;
+
+        bool IsBracketLegal(char * Buf);
+        void PrioritySet(char * Buf);
+        int GetMaxPriority();
+        bool HaveHOprt(int MaxPri);
+        bool Display();
+        int GetTen(int n);
+        bool Analysis(char * Buf);
+        float Calculate();
+    public:
+        CCalculate(char * Buf = NULL);
+        float DoIt(char * BUf);
+ 
+ two:
+ the main:
+ bool CCalculate::Analysis(char * Buf)
+{
+    if(!IsBracketLegal(Buf))
+        return false;
+
+    stack<int> iTemp;
+    int valtemp = 0;
+
+    for(int i = 0;Buf[i] != NULL;i ++)
+    {
+        if(Buf[i] >= '0' && Buf[i] <= '9')
+        {
+            iTemp.push(int(Buf[i] - '0'));
+            continue;
+        }
+        switch(Buf[i])
+        {
+            case '+':
+            case '-':
+            case '*':
+            case '/':
+                for(int k = 0; !iTemp.empty(); k ++)
+                {
+                    valtemp += iTemp.top() * GetTen(k);
+                    iTemp.pop();
+                }
+                fArray.push_back(float(valtemp));
+                valtemp = 0;
+            cOprt.push_back(Buf[i]);
+            break;
+        }
+    }
+    for(int k = 0; !iTemp.empty(); k ++)
+    {
+        valtemp += iTemp.top() * GetTen(k);
+        iTemp.pop();
+    }
+    fArray.push_back(float(valtemp));
+    return true;
+}
+
+three:
+the most difficult qusetion:
+the priority of bracket: detection
+bool CCalculate::IsBracketLegal(char * Buf)
+{
+    stack<char> Temp;
+    for(int i = 0;Buf[i] != NULL; i++)
+    {
+        if(Buf[i] == '(')
+        {
+            Temp.push(Buf[i]);
+            continue;
+        }
+        if(Buf[i] == ')')
+        {
+            if(Temp.empty())
+                return false;
+            else
+            {
+                Temp.pop();
+                continue;
+            }
+        }
+    }
+    if(Temp.empty())
+        return true;
+    return false;
+}
+
+Finally:the questions, which are not solved.
+the priority of operational characters.
