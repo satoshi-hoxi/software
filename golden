@@ -1,0 +1,34 @@
+#include "stdafx.h"#include "stdio.h"
+#include "math.h"
+void main(){ 
+   int N,a[100],i,c; 
+   double ave=0,G,amin,amax; 
+   printf("****************************************************\n"); 
+   printf("\n\n\n\n"); 
+   do { 
+      printf("**************************          **************************\n"); 
+      scanf("%d",&N); 
+      for(i=0;i<N;i++) { 
+         printf(":\n",i+1); 
+         scanf("%d",&a[i]);  
+         ave=ave+a[i];
+         
+      } 
+      ave=ave/N; 
+      G=0.618*ave; 
+      printf("lf:\n",ave); 
+      printf("%lf:\n",G); 
+      amin=fabs(a[0]-G),amax=fabs(a[0]-G); 
+      for(i=1;i<N;i++) {  
+         if(fabs(a[i]-G)<amin)   
+         amin=fabs(a[i]-G);  
+         else   continue; 
+      } 
+      for(i=0;i<N;i++) {  
+        if(amin==fabs(a[i]-G))  {   
+        i++;   printf("%d %d.\n",i,N);  
+      }  else   continue;
+   } for(i=1;i<N;i++) {  
+   if(fabs(a[i]-G)>amax)   amax=fabs(a[i]-G);  else   continue;
+ } for(i=0;i<N;i++)  {  if(amax==fabs(a[i]-G))  {   i++;   printf("-2.\n",i);  }  else   continue;
+ } printf("0。\n"); printf("^_^ ^_^ ^_^ ^_^ ^_^ ^_^ ^_^^_^ ^_^ ^_^ ^_^ ^_^ ^_^ ^_^ \n"); printf("。\n"); scanf("%d",&c); }while(c==1);  printf("=o= =o= =o= =o= =o= =o= =o= =o= =o= =o= =o= =o= =o= =o= \n\n\n\n\n\n\n"); printf("………………………………………………………………………\n");
